@@ -5,6 +5,8 @@ A Jetpack Compose library for animated rolling/odometer-style text transitions.
 When digits change, they animate through all intermediate values like a mechanical counter:
 - **Increasing** (2 → 5): digits roll down through 2 → 3 → 4 → 5
 - **Decreasing** (7 → 3): digits roll up through 7 → 6 → 5 → 4 → 3
+  
+<img src="assets/demo.gif" width="300" />
 
 ## Installation
 
