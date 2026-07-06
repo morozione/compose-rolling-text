@@ -26,7 +26,7 @@ Add the dependency to your module's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.morozione:compose-rolling-text:1.0.0")
+    implementation("com.github.morozione:compose-rolling-text:v1.1.0")
 }
 ```
 
@@ -61,19 +61,28 @@ fun BalanceDisplay() {
 | `animateChanges` | `Boolean` | `true` | Enable/disable rolling animation. |
 | `debounceMs` | `Long` | `20` | Debounce delay to avoid flickering on rapid updates. |
 | `autoSize` | `Boolean` | `true` | Auto-adjust font size to fit available width. |
+| `minFontSize` | `TextUnit` | `10.sp` | Lower bound for auto-size shrinking. |
+| `animationSpec` | `AnimationSpec<Float>` | 500ms emphasized tween | Animation used for the rolling transition. |
 
 ## Features
 
-- Smooth Material Design emphasized easing curves
+- Smooth Material Design emphasized easing curves (customizable via `animationSpec`)
+- Digit columns keyed from the right, so `99 → 100` rolls like a real odometer
+- Fixed-width digit slots — no horizontal jitter while digits roll, even with proportional fonts
 - Auto-sizing text to fit container width
 - Non-digit characters (currency symbols, spaces, punctuation) displayed without animation
 - Configurable animation enable/disable
 - Debounce support for rapid value changes
 
+## Notes
+
+- When neither `color` nor `style.color` is specified, text is drawn in **black** — the
+  component does not read Material's `LocalContentColor`, so pass an explicit color in dark themes.
+
 ## Requirements
 
 - Min SDK: 21
-- Jetpack Compose BOM: 2024.12.01+
+- Jetpack Compose BOM: 2026.06.01+
 
 ## License
 
