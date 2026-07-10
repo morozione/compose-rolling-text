@@ -114,7 +114,7 @@ class RollingAnimatedTextE2eTest {
     @Test
     fun autoSizeRendersLongTextInNarrowContainer() {
         rule.setContent {
-            Box(modifier = Modifier.width(48.dp)) {
+            Box(modifier = Modifier.width(120.dp)) {
                 RollingAnimatedText(
                     text = "1234567890",
                     style = TextStyle(fontSize = 32.sp),
@@ -122,8 +122,10 @@ class RollingAnimatedTextE2eTest {
             }
         }
 
-        // Auto-size shrinks the font instead of crashing or clipping slots away
+        // 10 digits at 32.sp need ~180dp, so auto-size must shrink the font;
+        // 120dp is wide enough for the shrunk row, so every digit stays visible
         rule.onNodeWithText("1").assertIsDisplayed()
+        rule.onNodeWithText("5").assertIsDisplayed()
         rule.onNodeWithText("0").assertIsDisplayed()
     }
 }
